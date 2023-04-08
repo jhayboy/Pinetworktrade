@@ -20,7 +20,7 @@ export default function Profile(){
     const [info, setInfo] = useState(true)
     const [currentUser, setCurrentUser] = useState()
     const userId = localStorage.getItem('firebaseUserId');
-    const [bankinfo, setBankInfo] = useState({accNo: "", accName: "", bankName: ""})
+    const [bankinfo, setBankInfo] = useState({walletAddress: ""})
     const [verified, setVerified] = useState()
     const [bankbut, setBankBut] = useState(true)
     const [sent, setSent] = useState(false)
@@ -51,8 +51,8 @@ export default function Profile(){
     }
     const handleSubmit = (e)=>{
         e.preventDefault()
-        const docRef = doc(db, "bankinfo", userId)
-        const payload = {accNo: bankinfo.accNo, accName: bankinfo.accName, bankName: bankinfo.bankName}
+        const docRef = doc(db, "wallet", userId)
+        const payload = {walletAddress: bankinfo.walletAddress}
         setDoc(docRef, payload)
         setInfo(true)
         setBankBut(true)
@@ -91,13 +91,13 @@ export default function Profile(){
     })
 // IF THERE IS NO VALUE IN THE ADD ACOUUNT FORM LET THE BUTTON BE DISABLED
     useEffect(()=>{
-        if (bankinfo.accName.length > 1 && bankinfo.accNo.length > 1 && bankinfo.bankName.length > 1){
+        if (!bankinfo.walletAddress){
             setBankBut(false)
         }
     },[bankinfo])
 
     useEffect(() =>{
-        onSnapshot(doc(db, "bankinfo", userId), (doc) => {
+        onSnapshot(doc(db, "wallet", userId), (doc) => {
             // console.log(doc.data());
             const datal = doc.data()
             setProfile(datal)
@@ -127,58 +127,43 @@ export default function Profile(){
                 </div>
                 <div className="w-full flex gap-2">
                     <div className="w-[50%]">
-                        <p className="text-slate-300 text-sm">Firstname</p>
+                        <p className="text-slate-500 text-sm">Firstname</p>
                         <p className="w-full h-10 bg-slate-200 rounded-lg border-2 border-black flex items-center px-2">{main.firstname}</p>
                     </div>
                     <div className="w-[50%]">
-                        <p className="text-slate-300 text-sm">Lastname</p>
+                        <p className="text-slate-500 text-sm">Lastname</p>
                         <p className="w-full h-10 bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2">{main.lastname}</p>
                     </div>
                 </div>
                 <div className="w-full flex-start">
-                    <p className="text-slate-300 text-sm">Email</p>
+                    <p className="text-slate-500 text-sm">Email</p>
                     <p className="w-full h-10 bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2">{currentUser}</p>
                     <div>{verified === true ? <p className="text-sm text-green-500 ">verified</p> : <p onClick={Sendemail} className="text-sm text-red-500">verify your email</p>}</div>
                 </div>
                 <div className="w-full flex-start">
-                    <p className="text-slate-300 text-sm">Bank Details</p>
+                    <p className="text-slate-500 text-sm">Add wallet Address</p>
                     <div className="w-full bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2 text-sm gap-2 py-2">
-                        {profile.accNo === "null" ? <p>Add bank account</p> : <div className="flex items-center px-2 text-sm gap-2 py-2"><div className="h-6 w-6 rounded-full bg-white flex justify-center items-center">Bank</div>
                         <div>
-                            <p>{profile.accNo} - {profile.accName}</p>
-                            <p>{profile.bankName}</p>
-                        </div></div>
-                        }
+                            {/* {profile.walletAddress ===  "null" ? <p>Add wallet</p> : <p>{profile.walletAddress}</p>}  */}
+                            <p>{profile.walletAddress === "null" ? <p>Add wallet address</p> : profile.walletAddress} </p>
+                        </div>
                         <CiEdit onClick={handleClick} size={20} className="ml-auto"/>
-                    </div>
+                    </div>  
                 </div>
                 <div className={!info ? "fixed w-full px-5 top-0 bg-white/80 h-screen flex flex-col justify-center items-center" : "hidden"}>
                     <div className="w-full bg-white px-5 py-8">
                         <AiOutlineCloseCircle onClick={()=>setInfo(true)} className="ml-auto flex mb-5" size={18}/>
                         <form className="flex flex-col gap-2">
+                            <div>
+                                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" className="w-50 h-50"/>
+                                <p>USDT-BEP20</p>
+                            </div>
                             <input 
                                 type="text" 
                                 onChange={handleChange}
-                                value={bankinfo.accNo}
-                                placeholder="Account Number" 
-                                name="accNo" 
-                                className="w-full h-10 bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2" 
-                                maxLength="10"
-                            />
-                            <input 
-                                type="text" 
-                                onChange={handleChange}
-                                value={bankinfo.accName}
-                                placeholder="Account Name" 
-                                name="accName" 
-                                className="w-full h-10 bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2"
-                            />
-                            <input 
-                                type="text" 
-                                onChange={handleChange}
-                                value={bankinfo.bankName}
-                                placeholder="Bank Name" 
-                                name="bankName" 
+                                value={bankinfo.walletAddress}
+                                placeholder="Wallet Address" 
+                                name="walletAddress" 
                                 className="w-full h-10 bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2"
                             />
                             <button disabled={bankbut} onClick={handleSubmit} className="bg-blue-600 px-3 py-1 w-20 text-white rounded-lg mt-2">submit</button>

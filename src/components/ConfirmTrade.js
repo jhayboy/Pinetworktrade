@@ -56,7 +56,7 @@ export default function ConfirmTrade(){
                         <img className="w-20" src={list.image} alt="logo"/>
                     </div>
                     <div className="border w-full py-2 flex justify-center items-center border-x-0">
-                        <p className="text-lg font-semibold tracking-wide">1 <span className="uppercase">{list.symbol}</span> at NGN {list.min && trade === "buyprice" ? list.buy_price.toLocaleString() : list.min && trade === "sellprice" ? list.current_price : trade === "buyprice" ? buyprice : sellprice}</p>
+                        <p className="text-lg font-semibold tracking-wide">1 <span className="uppercase">{list.symbol}</span> at &#36; {list.min && trade === "buyprice" ? list.buy_price.toLocaleString() : list.min && trade === "sellprice" ? list.current_price : trade === "buyprice" ? buyprice : sellprice}</p>
                     </div>
                     <div className="flex w-full mt-5">
                         <p className="w-[50%]">You {trade === "buyprice" ? "Buy" : "Sell"}:</p>
@@ -64,7 +64,7 @@ export default function ConfirmTrade(){
                     </div>
                     <div className="flex w-full mt-3">
                         <p className="w-[50%]">You {trade === "buyprice" ? "Pay" : "Get"}:</p>
-                        <p>NGN {list.min && trade === "buyprice" ? pibuyPrice : list.min && trade === "sellprice" ? pisellPrice : trade === "buyprice" && !list.min ? amountToRecieve : amountToPay}</p>
+                        <p>&#36; {list.min && trade === "buyprice" ? pibuyPrice : list.min && trade === "sellprice" ? pisellPrice : trade === "buyprice" && !list.min ? amountToRecieve : amountToPay}</p>
                     </div>
                     <Link to={trade === "buyprice" ? "/payment" : "/paymentaddress"}>
                         <button className=" mt-8 bg-blue-600 p-3 text-white outline-none">Proceed with {trade === "buyprice" ? "purchase" : "sale"}</button>

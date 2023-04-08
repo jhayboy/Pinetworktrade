@@ -70,8 +70,8 @@ export default function Recieptdrop({values}){
                         <p>{quantities.name}</p>
                         <p>${price.price} (x{price.quantity})</p>
                         <p>{values.email}</p>
-                        <p> &#8358;{totalPurchase.toLocaleString()}</p>
-                        <p className="font-semibold text-blue-700"> &#8358;{totalPurchase.toLocaleString()}</p>
+                        <p> &#36;{totalPurchase.toLocaleString()}</p>
+                        <p className="font-semibold text-blue-700"> &#36;{totalPurchase.toLocaleString()}</p>
                     </div>
                 </div>
             </div>

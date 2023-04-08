@@ -21,10 +21,10 @@ export default function Trade(){
     }
    })
     useEffect(()=>{
-        if(list.current_price <= 2000 && trade === "sellprice" && amount.quantity >= 5){
+        if(list.current_price <= 20 && trade === "sellprice" && amount.quantity >= 100){
             setNext(false)
         }
-        if(list.current_price > 2000 && trade === "sellprice" && amount.quantity > 0){
+        if(list.current_price > 20 && trade === "sellprice" && amount.quantity > 0){
             setNext(false)
         }
        
@@ -34,10 +34,10 @@ export default function Trade(){
         // if(list.name !== "PiCoin" && amount.quantity.length < 1){
         //     setNext(true)
         // }
-        if(list.current_price <= 2000 && trade === "sellprice" && amount.quantity < 1){
+        if(list.current_price <= 20 && trade === "sellprice" && amount.quantity < 1){
             setNext(true)
         }
-        if(list.current_price > 2000 && trade === "sellprice" && amount.quantity <= 0){
+        if(list.current_price > 20 && trade === "sellprice" && amount.quantity <= 0){
             setNext(true)
         }
         if (trade === "buyprice" && list.name === "PiCoin" &&  amount.quantity < 50){
@@ -46,7 +46,7 @@ export default function Trade(){
         if (trade === "buyprice" && list.name === "PiCoin" &&  amount.quantity >= 50){
             setNext(false)
         }
-        // if (trade === "buyprice" && list.name !== "PiCoin" && list.current_price < 2000 &&  amount.quantity >= 5){
+        // if (trade === "buyprice" && list.name !== "PiCoin" && list.current_price < 20 &&  amount.quantity >= 5){
         //     setNext(false)
         // }
 
@@ -88,7 +88,7 @@ export default function Trade(){
                         placeholder="Enter Amount"
                     />
                 </div>
-                {trade === "sellprice" && list.name === "PiCoin" ? <p className="mr-auto text-slate-400 mt-2">Testnet Coin is not accepted</p> : <p className="mr-auto text-slate-400 mt-2">{trade === "buyprice" ? list.min : ""}</p>}
+                {trade === "sellprice" && list.name === "PiCoin" ? <p className="mr-auto text-slate-400 mt-2">minimum of 100</p> : <p className="mr-auto text-slate-400 mt-2">{trade === "buyprice" ? list.min : ""}</p>}
                 <Link to={trade === "buyprice" ? '/wallet' : '/confirmtrade'}>
                     <button disabled={next} className=" mt-5 bg-blue-600 p-3 text-white outline-none">Proceed with {trade === "buyprice" ? "purchase" : "sale"}</button>
                 </Link>

@@ -44,7 +44,7 @@ const History = ({datal}) => {
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <p>&#8358;{items.price}</p>
+                                <p>&#36;{items.price}</p>
                                 <p className={items.status === "pending" ? "text-yellow-600 ml-auto" : items.status === "Successful" ? "text-green-500 ml-auto" : "text-red-500 ml-auto"}>{items.status}</p>
                             </div>
                         </div>

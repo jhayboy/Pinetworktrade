@@ -44,7 +44,7 @@ export default function Success(){
                                 </div>
                             </div>
                             <div className="flex flex-col">
-                                <p>&#8358;{items.price}</p>
+                                <p>&#36;{items.price}</p>
                                 <p className="text-green-600 ml-auto">{items.status}</p>
                             </div>
                         </div>

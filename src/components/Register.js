@@ -113,8 +113,8 @@ export default function Register() {
       const docRef = doc(db, "profiledetails", currentUser.uid)
       const payload = {firstname: values.firstname, lastname: values.lastname, MobileNumber: values.number}
       await setDoc (docRef, payload)
-      const docRef1 = doc(db, "bankinfo", currentUser.uid)
-      const payload1 = {accNo: "null", accName: "null", bankName: "null"}
+      const docRef1 = doc(db, "wallet", currentUser.uid)
+      const payload1 = {walletAddress: "null"}
       await setDoc (docRef1, payload1)
       console.log(currentUser.uid)
       console.log(currentUser.email)

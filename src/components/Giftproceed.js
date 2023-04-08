@@ -247,7 +247,7 @@ export default function Trade({cardsellprice, cardbuyprice}){
                     {loading ? <FaReact size={45} className="animate-spin "/> :
                     <div className="flex flex-col justify-center items-center gap-5">
                         <BsCheckCircleFill size={40} className="text-green-500"/>
-                    <p className="text-center">Your Giftcard is being reviewed, as soon as card is verified your {profile.bankName} account with the account number {profile.accNo} will be credited with &#8358;10,000 </p>
+                    <p className="text-center">Your Giftcard is being reviewed, as soon as card is verified your {profile.bankName} account with the account number {profile.accNo} will be credited with &#36;10,000 </p>
                     <Link to='/welcome'>
                       <button onClick={handleTrans} className="bg-blue-600 p-3 px-5 rounded-lg text-white outline-none">Continue</button>
                     </Link>

@@ -16,15 +16,15 @@ export default function Coinsmap(){
   const [listed, setListed] = useState([])
   const [activeItem, setActiveItem] = useState([])
   const [pitiveItem, setPitiveItem] = useState([])
-  const cals = activeItem.current_price + (62/100) * activeItem.current_price
+  const cals = activeItem.current_price + (0/100) * activeItem.current_price
   const sellprice = cals.toLocaleString() 
-  const calb = activeItem.current_price + (67/100) * activeItem.current_price
+  const calb = activeItem.current_price + (0/100) * activeItem.current_price
   const buyprice = calb.toLocaleString()
   // const [mainItem, setMainItem] = useState([])
   // const [otherItem, setOtherItem] = useState([])
 
   // asigning coingecko link to a url variable
-  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=10&page=1&sparkline=false'
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false'
 
   // setting the arrays to this onClick function
   const Bars = (item) =>{
@@ -76,7 +76,7 @@ export default function Coinsmap(){
                         </div>
                       </div>
                       <div className="flex flex-col items-end">
-                        {/* <p className="dark:text-white">&#8358;{(pitems.current_price).toLocaleString()}</p> */}
+                        {/* <p className="dark:text-white">&#36;{(pitems.current_price).toLocaleString()}</p> */}
                         <div className="flex justify-center items-center bg-[#00df9a]/25 px-1 rounded-md">
                           <IoMdArrowDropup className="text-[#00df9a]"/>
                           <p className="text-[#00df9a]">{pitems.percentage}</p>
@@ -99,7 +99,7 @@ export default function Coinsmap(){
                           </div>
                         </div>
                         <div className="flex flex-col items-end">
-                          {/* <p className="dark:text-white">&#8358;{(item.current_price).toLocaleString()}</p> */}
+                          {/* <p className="dark:text-white">&#36;{(item.current_price).toLocaleString()}</p> */}
                           {/* <p className={item.price_change_percentage_24h > 0 ? "text-[#00df9a]" : "text-red-600"}>{item.price_change_percentage_24h.toFixed(2)}%</p> */}
                           <div className={item.price_change_percentage_24h > 0 ? "flex justify-center items-center bg-[#00df9a]/25 px-1 rounded-md" : "flex justify-center items-center bg-red-600/25 px-1 rounded-md"}>
                             {item.price_change_percentage_24h > 0 ? <IoMdArrowDropup className='text-[#00df9a]'/> : <IoMdArrowDropdown className="text-red-600"/>}
@@ -120,13 +120,13 @@ export default function Coinsmap(){
                   <div className="border-2 border-slate-400 border-t-0 border-x-0 w-full flex flex-col items-center justify-center pb-3">
                     <img src={activeItem.image} alt="coinImage" className="w-20 h-20 rounded-full mx-auto"/>
                     <div className="mt-8 text-center">
-                      <p className="font-semibold text-center">&#8358;{sellprice.toLocaleString()}</p>
+                      <p className="font-semibold text-center">&#36;{sellprice.toLocaleString()}</p>
                       <p className="text-sm">24 hrs Change <span className={activeItem.price_change_percentage_24h > 0 ? "text-[#00df9a]" : "text-red-600"}>{activeItem.price_change_percentage_24h}</span></p>
                     </div>
                   </div>
                   <div className="bg-white mt-8 w-full rounded-xl py-3 flex flex-col justify-center items-center ">
                     
-                    <p className="font-semibold uppercase">1 {activeItem.symbol} ~ NGN {sellprice}</p>
+                    <p className="font-semibold uppercase">1 {activeItem.symbol} ~ $ {sellprice}</p>
                   </div>
 
                   {/* Buy and sell crypto section for Picoin */}
@@ -161,12 +161,12 @@ export default function Coinsmap(){
                   <div className="border-2 border-slate-400 border-t-0 border-x-0 w-full flex flex-col items-center justify-center pb-3">
                     <img src={pitiveItem.image} alt='picoin' className="w-20 h-20 rounded-full mx-auto"/>
                     <div className="mt-8">
-                      <p className="font-semibold text-center">&#8358;{pitiveItem.current_price}</p>
+                      <p className="font-semibold text-center">&#36;{pitiveItem.current_price}</p>
                       <p className="text-sm">24 hrs Change <span className="text-[#00df9a]">{pitiveItem.percentage}</span></p>
                     </div>
                   </div>
                   <div className="bg-white mt-8 w-full rounded-xl py-3 flex flex-col justify-center items-center ">
-                    <p className="font-semibold">1 {pitiveItem.name} ~ NGN {pitiveItem.current_price}</p>
+                    <p className="font-semibold">1 {pitiveItem.name} ~ $ {pitiveItem.current_price}</p>
                   </div>
                   
                   {/* Buy and sell crypto section for Picoin */}

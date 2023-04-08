@@ -67,10 +67,10 @@ export default function Login() {
 
     auth.onAuthStateChanged(user =>{
         if (user){ 
-          console.log(user.uid)
-          console.log(user.email)
-          console.log(user.emailVerified)
-          console.log(user)
+          // console.log(user.uid)
+          // console.log(user.email)
+          // console.log(user.emailVerified)
+          // console.log(user)
           setProfileId(user)
           localStorage.setItem('firebaseUserId', user.uid);
         }
@@ -81,6 +81,15 @@ export default function Login() {
 
   const [viewPass, setViewPass] = useState(false)
 
+  // useEffect(()=>{
+        
+  //   auth.onAuthStateChanged((user) => {
+  //       if (user){
+  //         navigate('/welcome')
+  //       }
+  //   })
+    
+  // })
  
   useEffect(()=>{
     if (password.length > 0) {
