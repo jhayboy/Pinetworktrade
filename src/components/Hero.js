@@ -6,7 +6,7 @@ export default function Hero() {
     <div className="text-white bg-black">
       <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
         <p className="text-[#00df9a] font-bold p-1">
-          Trade With Exhancy
+          Trade With PiTrade
         </p>
         <h1 className="md:text-7xl sm:text-6xl text-3xl font-bold md:py-3">
           Grow with data.

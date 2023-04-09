@@ -145,7 +145,7 @@ const Paystack = () =>{
     return (
         <div className="flex flex-col items-center justify-center h-screen px-8 bg-[#010f24] text-white w-full">
           {/* <div className='flex justify-center items-center gap-1 text-white mb-3'>
-            <p className='font-semibold text-2xl'>Exhancy</p>
+            <p className='font-semibold text-2xl'>PiTrade</p>
           </div> */}
 
         {/* THE DETAILS FOR PURCHASE */}

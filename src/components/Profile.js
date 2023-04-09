@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom";
 import 'firebase/firestore';
+import axios from "axios"
 import {doc, onSnapshot, setDoc, getDoc} from "firebase/firestore"
 import { onAuthStateChanged, sendEmailVerification} from "firebase/auth"
 import {MdVerified} from "react-icons/md"
@@ -24,9 +25,18 @@ export default function Profile(){
     const [verified, setVerified] = useState()
     const [bankbut, setBankBut] = useState(true)
     const [sent, setSent] = useState(false)
+    const [listed, setListed] = useState([])
+    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=3&page=1&sparkline=false'
      
 
-    
+    useEffect(()=>{
+        axios.get(url).then((response)=>{
+          setListed(response.data)
+          // console.log(response.data)
+        }).catch((error)=>{
+          console.log(error)
+        })
+    },[])
     
     const Sendemail = () => {
        auth.onAuthStateChanged((user) => {
@@ -104,6 +114,15 @@ export default function Profile(){
         });
     })
 
+    useEffect(()=>{
+        axios.get(url).then((response)=>{
+          setListed(response.data)
+          // console.log(response.data)
+        }).catch((error)=>{
+          console.log(error)
+        })
+    },[])
+
 
     return(
         <div className="flex flex-col justify-center items-center bg-slate-400 px-5 h-screen">
@@ -141,7 +160,15 @@ export default function Profile(){
                     <div>{verified === true ? <p className="text-sm text-green-500 ">verified</p> : <p onClick={Sendemail} className="text-sm text-red-500">verify your email</p>}</div>
                 </div>
                 <div className="w-full flex-start">
-                    <p className="text-slate-500 text-sm">Add wallet Address</p>
+                    {/* <p className="text-slate-500 text-sm">Add wallet Address</p> */}
+                    {listed.map((item) => {
+                        return(item.name === "Tether" ?
+                            <div className="flex items-center" key={item.id}>
+                                <img className="w-5 h-5 rounded-full" src={item.image} alt={item.id}/>
+                                <p>{item.name}</p>
+                            </div> : ""
+                        )
+                    })}
                     <div className="w-full bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2 text-sm gap-2 py-2">
                         <div>
                             {/* {profile.walletAddress ===  "null" ? <p>Add wallet</p> : <p>{profile.walletAddress}</p>}  */}

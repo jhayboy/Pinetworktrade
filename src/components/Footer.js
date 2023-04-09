@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <div className="w-full bg-black mx-auto border-0 py-16 px-4 grid lg:grid-col-3 lg:flex gap-5 text-gray-300">
       <div className="lg:w-[40%]">
-        <h1 className="w-full text-3xl font-bold text-[#00df9a]">Exhancy.</h1>
+        <h1 className="w-full text-3xl font-bold text-[#00df9a]">PiTrade.</h1>
         <p className="py-4">
           lorem, ipsum jack and jill that went ontop the hill did not get a pale
           of water nut he broke his leg and he carry last for class
